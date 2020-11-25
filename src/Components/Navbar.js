@@ -1,56 +1,49 @@
 let navBar = document.querySelector("#navBar");
 import {getUserSessionData} from "../utils/session.js";
+import logo from "../images/logo.png";
+import logouser from "../images/user.png";
 // destructuring assignment
 const Navbar = () => {
   let navbar;
   let user = getUserSessionData();    
   if (user) {
-    navbar = `<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2" id="navBar">
-  <a class="navbar-brand" href="/" data-uri="/">MyCMS</a
-  ><button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#" data-uri="/">Home</a>    
-      <a class="nav-item nav-link" href="#" data-uri="/users">List users</a>
-      <a class="nav-item nav-link" href="#" data-uri="/films">List films</a>
-      <a class="nav-item nav-link" href="#" data-uri="/films/add">Add film</a>
-      <a class="nav-item nav-link" href="#" data-uri="/logout">Logout</a>
-      <a class="nav-item nav-link disabled" href="#">${user.username}</a>
-    </div>
-  </div>
+    navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
+  <a class="navbar-brand" href="/">
+    <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+  </a>
+  <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
+  <a href="#" data-uri="/films/add"><button type="button" class="btn btn-white text-warning" style="font-size:30px">Add</button></a>
+  <a href="#" data-uri="/films"><button type="button" class="btn btn-white text-warning" style="font-size:30px" href="#" data-uri="/films">Search</button></a>
+</div>
+<div class="btn-group" role="group">
+<button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
+</button>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+  <a class="dropdown-item" href="#" data-uri="/">Home</a>
+  <a class="dropdown-item" href="#" data-uri="/logout">Logout</a>
+</div>
+</div>
   </nav>`;
   } else {
-    navbar = `<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2" id="navBar">
-  <a class="navbar-brand" href="/" data-uri="/">MyCMS</a
-  ><button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNavAltMarkup"
-    aria-controls="navbarNavAltMarkup"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav">
-      <a class="nav-item nav-link" href="#" data-uri="/">Home</a>
-      <a class="nav-item nav-link" href="#" data-uri="/register">Register</a>
-      <a class="nav-item nav-link" href="#" data-uri="/login">Login</a> 
-    </div>
+    navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
+    <a class="navbar-brand" href="/">
+      <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+    </a>
+    <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
+    <a type="button" class="btn btn-white text-warning"" style="font-size:30px" href="#" data-uri="/films/add">Add</a></button>
+    <a type="button" class="btn btn-white text-warning"" style="font-size:30px" href="#" data-uri="/films">Search</a></button>
   </div>
-  </nav>`;
+  <div class="btn-group" role="group">
+  <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
+  </button>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+    <a class="dropdown-item" href="#" data-uri="/login">Login</a>
+    <a class="dropdown-item" href="#" data-uri="/register">Register</a>
+  </div>
+  </div>
+    </nav>`;
   }
 
   return (navBar.innerHTML = navbar);
