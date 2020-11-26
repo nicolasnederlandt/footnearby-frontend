@@ -6,24 +6,41 @@ import { setLayout } from "../utils/render.js";
 /* In a template literal, the ` (backtick), \ (backslash), and $ (dollar sign) characters should be 
 escaped using the escape character \ if they are to be included in their template value. 
 By default, all escape sequences in a template literal are ignored.*/
-let registerPage = `<form>
-<div class="form-group">
-  <label for="email">Email</label>
-  <input class="form-control" id="email" type="text" name="email" placeholder="Enter your email" required="" pattern="^\\w+([.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+\$" />
-</div>
-<div class="form-group">
-  <label for="password">Password</label>
-  <input class="form-control" id="password" type="password" name="password" placeholder="Enter your password" required="" pattern=".*[A-Z]+.*" />
-</div>
-<button class="btn btn-primary" id="btn" type="submit">Submit</button>
-<!-- Create an alert component with bootstrap that is not displayed by default-->
-<div class="alert alert-danger mt-2 d-none" id="messageBoard"></div><span id="errorMessage"></span>
-</form>`;
+let registerPage = `
+<div class="modal" id="register" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Register</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" id="email" type="text" name="email" placeholder="Enter your email" required="" pattern="^\\w+([.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+\$" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control" id="password" type="password" name="password" placeholder="Enter your password" required="" pattern=".*[A-Z]+.*" />
+        </div>
+        <button class="btn btn-lg btn-block btn-success" id="btn" type="submit">Register</button>
+        <!-- Create an alert component with bootstrap that is not displayed by default-->
+        <div class="alert alert-danger mt-2 d-none" id="messageBoard"></div><span id="errorMessage"></span>
+      </form>
+      <div class="modal-footer">
+        <p>Already have an account ? <a class="text-success" href="#" data-toggle="modal" data-dismiss="modal" data-target="#login">Login</a></p>
+      </div>
+    </div>
+  </div>
+</div>`;
 
 const RegisterPage = () => {
   setLayout("Register");
-  let page = document.querySelector("#page");
-  page.innerHTML = registerPage;
+  let modalregister = document.querySelector("#modalregister");
+  modalregister.innerHTML = registerPage;
   let registerForm = document.querySelector("form");
   registerForm.addEventListener("submit", onRegister);
 };
@@ -67,6 +84,6 @@ const onError = (err) => {
   messageBoard.innerText = errorMessage;
   // show the messageBoard div (add relevant Bootstrap class)
   messageBoard.classList.add("d-block");  
-};
+}; 
 
 export default RegisterPage;

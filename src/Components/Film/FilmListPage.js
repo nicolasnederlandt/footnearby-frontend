@@ -7,7 +7,7 @@ let page = document.querySelector("#page");
 const FilmListPage = () => {
   setLayout("List of films");
   const user = getUserSessionData();
-
+  
   fetch("/api/films", {
     method: "GET",
     headers: {

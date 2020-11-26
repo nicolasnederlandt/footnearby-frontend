@@ -39,8 +39,8 @@ const Navbar = () => {
     <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
   </button>
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-    <a class="dropdown-item" href="#" data-uri="/login">Login</a>
-    <a class="dropdown-item" href="#" data-uri="/register">Register</a>
+    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#login">Login</a>
+    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#register">Register</a>
   </div>
   </div>
     </nav>`;
