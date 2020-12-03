@@ -20,7 +20,11 @@ let registerPage = `
       <form>
         <div class="form-group">
           <label for="email">Email</label>
-          <input class="form-control" id="email" type="text" name="email" placeholder="Enter your email" required="" pattern="^\\w+([.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+\$" />
+          <input class="form-control" id="email" type="text" name="email" placeholder="Enter your email" pattern="^\\w+([.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+\$" />
+        </div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input class="form-control" id="username" type="text" name="username" placeholder="Enter your username" required=""/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
@@ -49,6 +53,7 @@ const onRegister = (e) => {
   e.preventDefault();
   let user = {
     email: document.getElementById("email").value,
+    username: document.getElementById("username").value,
     password: document.getElementById("password").value,
   };
 
@@ -69,7 +74,7 @@ const onRegister = (e) => {
 
 const onUserRegistration = (userData) => {
   console.log("onUserRegistration", userData);
-  const user = {...userData, isAutenticated:true};
+  const user = {...userData, isAutenticated:true, isAdmin: false};
   setUserSessionData(user);
   // re-render the navbar for the authenticated user
   Navbar();

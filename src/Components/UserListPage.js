@@ -61,4 +61,25 @@ const onError = (err) => {
   RedirectUrl("/error", errorMessage);
 };
 
+const onDelete = (e) => {
+  // the id is given in the current table row under data-id attribute
+  const userId = e.target.parentElement.parentElement.dataset.id;
+  const user = getUserSessionData();
+  fetch("/api/users/" + userId, {
+    method: "DELETE",
+    headers: {
+      Authorization: user.token,
+    },
+  })
+    .then((response) => {
+      if (!response.ok)
+        throw new Error(
+          "Error code : " + response.status + " : " + response.statusText
+        );
+      return response.json();
+    })
+    .then((data) => UserListPage())
+    .catch((err) => onError(err));
+};
+
 export default UserListPage;
