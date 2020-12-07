@@ -29,7 +29,7 @@ let loginPage = `
         </div>
         <button class="btn btn-lg btn-block btn-success" id="btnlogin" type="submit">Login</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
-        <div class="alert alert-danger mt-2 d-none" id="messageBoard"></div>
+        <div class="alert alert-danger mt-2 d-none" id="messageBoardLogin"></div>
       </form>
       <div class="modal-footer">
         <p>Don't have an account ? <a class="text-success" href="#" data-toggle="modal" data-dismiss="modal" data-target="#register">Register</a></p>
@@ -90,7 +90,7 @@ const onUserLogin = (userData) => {
 };
 
 const onError = (err) => {
-  let messageBoard = document.querySelector("#messageBoard");
+  let messageBoard = document.querySelector("#messageBoardLogin");
   let errorMessage = "";
   if (err.message.includes("401")) errorMessage = "Wrong username or password.";
   else errorMessage = err.message;

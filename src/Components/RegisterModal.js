@@ -32,7 +32,7 @@ let registerPage = `
         </div>
         <button class="btn btn-lg btn-block btn-success" id="btnregister" type="submit">Register</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
-        <div class="alert alert-danger mt-2 d-none" id="messageBoard"></div><span id="errorMessage"></span>
+        <div class="alert alert-danger mt-2 d-none" id="messageBoardRegister"></div><span id="errorMessage"></span>
       </form>
       <div class="modal-footer">
         <p>Already have an account ? <a class="text-success" href="#" data-toggle="modal" data-dismiss="modal" data-target="#login">Login</a></p>
@@ -82,7 +82,7 @@ const onUserRegistration = (userData) => {
 };
 
 const onError = (err) => {
-  let messageBoard = document.querySelector("#messageBoard");
+  let messageBoard = document.querySelector("#messageBoardRegister");
   let errorMessage = "";
   if (err.message.includes("409")) errorMessage = "This user is already registered.";
   else errorMessage = err.message;
