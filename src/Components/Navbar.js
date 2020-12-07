@@ -7,8 +7,8 @@ const Navbar = () => {
   let navbar;
   let user = getUserSessionData();    
   if (user) {
-    if(user.admin){`
-    <nav class="navbar fixed-top navbar-light bg-white shadow-sm">
+    if(user.user.admin){
+      navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
   <a class="navbar-brand" href="#" data-uri="/">
     <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
   </a>
@@ -23,6 +23,7 @@ const Navbar = () => {
 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
   <a class="dropdown-item" href="#" data-uri="/">Home</a>
   <a class="dropdown-item" href="#" data-uri="/users">List of Users</a>
+  <div class="dropdown-divider"></div>
   <a class="dropdown-item" href="#" data-uri="/logout">Logout</a>
 </div>
 </div>
@@ -42,6 +43,7 @@ const Navbar = () => {
 </button>
 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
   <a class="dropdown-item" href="#" data-uri="/">Home</a>
+  <div class="dropdown-divider"></div>
   <a class="dropdown-item" href="#" data-uri="/logout">Logout</a>
 </div>
 </div>

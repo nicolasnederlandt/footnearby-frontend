@@ -20,17 +20,17 @@ let registerPage = `
       <form>
         <div class="form-group">
           <label for="email">Email</label>
-          <input class="form-control" id="email" type="text" name="email" placeholder="Enter your email" pattern="^\\w+([.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+\$" />
+          <input class="form-control" id="emailregister" type="text" name="email" placeholder="Enter your email" pattern="^\\w+([.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+\$" />
         </div>
         <div class="form-group">
           <label for="username">Username</label>
-          <input class="form-control" id="username" type="text" name="username" placeholder="Enter your username" required=""/>
+          <input class="form-control" id="usernameregister" type="text" name="username" placeholder="Enter your username" required=""/>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input class="form-control" id="password" type="password" name="password" placeholder="Enter your password" required="" pattern=".*[A-Z]+.*" />
+          <input class="form-control" id="passwordregister" type="password" name="password" placeholder="Enter your password" required="" pattern=".*[A-Z]+.*" />
         </div>
-        <button class="btn btn-lg btn-block btn-success" id="btn" type="submit">Register</button>
+        <button class="btn btn-lg btn-block btn-success" id="btnregister" type="submit">Register</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
         <div class="alert alert-danger mt-2 d-none" id="messageBoard"></div><span id="errorMessage"></span>
       </form>
@@ -52,9 +52,9 @@ const RegisterPage = () => {
 const onRegister = (e) => {
   e.preventDefault();
   let user = {
-    email: document.getElementById("email").value,
-    username: document.getElementById("username").value,
-    password: document.getElementById("password").value,
+    email: document.getElementById("emailregister").value,
+    username: document.getElementById("usernameregister").value,
+    password: document.getElementById("passwordregister").value,
   };
 
   fetch("/api/users/", {
@@ -74,7 +74,7 @@ const onRegister = (e) => {
 
 const onUserRegistration = (userData) => {
   console.log("onUserRegistration", userData);
-  const user = {...userData, isAutenticated:true, isAdmin: false};
+  const user = {...userData, isAutenticated:true };
   setUserSessionData(user);
   // re-render the navbar for the authenticated user
   Navbar();

@@ -16,8 +16,7 @@ const FOOTER_TEXT = "Happy learning : )";
 
 Navbar();
 
-RegisterModal();
-LoginModal();
+RegisterModal()||LoginModal();
 
 ThemeDropDown();
 

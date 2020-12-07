@@ -21,13 +21,13 @@ let loginPage = `
       <form>
         <div class="form-group">
           <label for="username">Username</label>
-          <input class="form-control" id="username" type="text" name="username" placeholder="Enter your username" required="" />
+          <input class="form-control" id="usernamelogin" type="text" name="username" placeholder="Enter your username" required="" />
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input class="form-control" id="password" type="password" name="password" placeholder="Enter your password" required="" pattern=".*[A-Z]+.*" />
+          <input class="form-control" id="passwordlogin" type="password" name="password" placeholder="Enter your password" required="" pattern=".*[A-Z]+.*" />
         </div>
-        <button class="btn btn-lg btn-block btn-success" id="btn" type="submit">Submit</button>
+        <button class="btn btn-lg btn-block btn-success" id="btnlogin" type="submit">Login</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
         <div class="alert alert-danger mt-2 d-none" id="messageBoard"></div>
       </form>
@@ -54,12 +54,12 @@ const LoginPage = () => {
 
 const onLogin = (e) => {
   e.preventDefault();
-  let username = document.getElementById("username");
-  let password = document.getElementById("password");
+  let username = document.getElementById("usernamelogin");
+  let password = document.getElementById("passwordlogin");
 
   let user = {
-    username: document.getElementById("username").value,
-    password: document.getElementById("password").value,
+    username: document.getElementById("usernamelogin").value,
+    password: document.getElementById("passwordlogin").value,
   };
 
   fetch("/api/users/login", {
