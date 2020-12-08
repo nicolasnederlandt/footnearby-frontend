@@ -17,7 +17,7 @@ let registerPage = `
         </button>
       </div>
       <div class="modal-body">
-      <form>
+      <form id="registerform">
         <div class="form-group">
           <label for="email">Email</label>
           <input class="form-control" id="emailregister" type="text" name="email" placeholder="Enter your email" pattern="^\\w+([.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,4})+\$" />
@@ -45,7 +45,7 @@ const RegisterPage = () => {
   setLayout("Register");
   let modalregister = document.querySelector("#modalregister");
   modalregister.innerHTML = registerPage;
-  let registerForm = document.querySelector("form");
+  let registerForm = document.querySelector("#registerform");
   registerForm.addEventListener("submit", onRegister);
 };
 

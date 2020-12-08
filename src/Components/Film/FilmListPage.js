@@ -4,25 +4,35 @@ import { getUserSessionData } from "../../utils/session.js";
 
 let page = document.querySelector("#page");
 
-const FilmListPage = () => {
-  setLayout("List of films");
-  const user = getUserSessionData();
-  
-  fetch("/api/films", {
-    method: "GET",
-    headers: {
-      Authorization: user.token,
-    },
-  })
-    .then((response) => {
-      if (!response.ok)
-        throw new Error(
-          "Error code : " + response.status + " : " + response.statusText
-        );
-      return response.json();
+const FilmListPage = (search) => {
+  if(!search){
+    setLayout("List of films");
+    
+    fetch("/api/films", {
+      method: "GET",
     })
-    .then((data) => onFilmList(data))
-    .catch((err) => onError(err));
+      .then((response) => {
+        if (!response.ok)
+          throw new Error(
+            "Error code : " + response.status + " : " + response.statusText
+          );
+        return response.json();
+      })
+      .then((data) => onFilmList(data))
+      .catch((err) => onError(err));
+}else{
+  setLayout(`Searching for ${search} ...`);
+
+  fetch("/api/films/" + search, {
+      method: "GET",
+  })
+  .then((response) => {
+      if(!response.ok) throw new Error("Error code : " + response.status + " : " + response.statusText);
+      return response.json();
+  })
+  .then((data) => onFilmList(data))
+  .catch((err) => onError(err));
+}
 };
 
 const onFilmList = (data) => {
@@ -59,15 +69,17 @@ const onFilmList = (data) => {
   </div>`;
   page.innerHTML = table;
 
-  const saveBtns = document.querySelectorAll(".save");
-  const deleteBtns = document.querySelectorAll(".delete");
-  deleteBtns.forEach((deleteBtn) => {
-    deleteBtn.addEventListener("click", onDelete);
-  });
+  if(!search){
+    const saveBtns = document.querySelectorAll(".save");
+    const deleteBtns = document.querySelectorAll(".delete");
+    deleteBtns.forEach((deleteBtn) => {
+      deleteBtn.addEventListener("click", onDelete);
+    });
 
-  saveBtns.forEach((saveBtn) => {
-    saveBtn.addEventListener("click", onSave);
-  });
+    saveBtns.forEach((saveBtn) => {
+      saveBtn.addEventListener("click", onSave);
+    });
+  }
 };
 
 const onSave = (e) => {

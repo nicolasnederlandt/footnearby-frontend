@@ -2,75 +2,112 @@ let navBar = document.querySelector("#navBar");
 import {getUserSessionData} from "../utils/session.js";
 import logo from "../images/logo.png";
 import logouser from "../images/user.png";
+import { RedirectUrl } from "./Router.js";
 // destructuring assignment
 const Navbar = () => {
   let navbar;
   let user = getUserSessionData();    
   if (user) {
     if(user.user.admin){
+      navbar = `
+    <nav class="navbar fixed-top navbar-light bg-white shadow-sm">
+      <a class="navbar-brand" href="/" data-uri="/">
+        <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+      </a>
+      <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
+        <button type="button" class="btn btn-white" style="font-size:30px">
+          <a href="#" data-uri="/films/add" style="text-decoration: none;" class="text-warning">Add</a>
+        </button>
+        <button type="button" class="btn btn-white" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+            <a class="text-warning" style="text-decoration: none; font-size:30px">Search</a>
+        </button>
+        <div class="rounded-pill dropdown-menu" style="width: 200%;">
+          <form id="searchform" class="form-inline d-flex justify-content-center md-form form-lg active-cyan active-cyan-2 mt-2 border-0">
+            <input id="search" class="form-control w-75" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-warning btn-rounded btn-sm my-0" type="submit">Search</button>
+            </form>
+        </div>
+      </div>
+      <div class="btn-group" role="group">
+        <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+          <a class="dropdown-item" href="#" data-uri="/">Home</a>
+          <a class="dropdown-item" href="#" data-uri="/users">List of Users</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" data-uri="/logout">Logout</a>
+        </div>
+      </div>
+    </nav>`;
+      } else {
       navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-  <a class="navbar-brand" href="#" data-uri="/">
-    <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
-  </a>
-  <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
-  <a href="#" data-uri="/films/add"><button type="button" class="btn btn-white text-warning" style="font-size:30px">Add</button></a>
-  <a href="#" data-uri="/films"><button type="button" class="btn btn-white text-warning" style="font-size:30px" href="#" data-uri="/films">Search</button></a>
-</div>
-<div class="btn-group" role="group">
-<button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
-</button>
-<div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-  <a class="dropdown-item" href="#" data-uri="/">Home</a>
-  <a class="dropdown-item" href="#" data-uri="/users">List of Users</a>
-  <div class="dropdown-divider"></div>
-  <a class="dropdown-item" href="#" data-uri="/logout">Logout</a>
-</div>
-</div>
-  </nav>`;
-    } else {
-    navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-  <a class="navbar-brand" href="#" data-uri="/">
-    <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
-  </a>
-  <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
-  <a href="#" data-uri="/films/add"><button type="button" class="btn btn-white text-warning" style="font-size:30px">Add</button></a>
-  <a href="#" data-uri="/films"><button type="button" class="btn btn-white text-warning" style="font-size:30px" href="#" data-uri="/films">Search</button></a>
-</div>
-<div class="btn-group" role="group">
-<button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-  <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
-</button>
-<div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-  <a class="dropdown-item" href="#" data-uri="/">Home</a>
-  <div class="dropdown-divider"></div>
-  <a class="dropdown-item" href="#" data-uri="/logout">Logout</a>
-</div>
-</div>
-  </nav>`;
-  } 
-}else {
-    navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-    <a class="navbar-brand" href="#" data-uri="/">
-          <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+    <a class="navbar-brand" href="/" data-uri="/">
+      <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
     <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
-    <a type="button" class="btn btn-white text-warning"" style="font-size:30px" href="#" data-uri="/films/add">Add</a></button>
-    <a type="button" class="btn btn-white text-warning"" style="font-size:30px" href="#" data-uri="/films">Search</a></button>
-  </div>
+      <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-uri="/films/add" style="text-decoration: none;" class="text-warning">Add</a></button>
+      <button type="button" class="btn btn-white id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+          <a class="text-warning" style="text-decoration: none; font-size:30px">Search</a>
+      </button>
+      <div class="rounded-pill dropdown-menu">
+      <form id="searchform" class="form-inline d-flex justify-content-center md-form form-lg active-cyan active-cyan-2 mt-2">
+        <input id="search" class="form-control w-75" type="search" placeholder="Search"
+          aria-label="Search">
+          <button class="btn btn-outline-warning btn-rounded btn-sm my-0" type="submit">Search</button>
+          </form>
+      </div>
+    </div>
   <div class="btn-group" role="group">
   <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
   </button>
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
-    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#login">Login</a>
-    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#register">Register</a>
+    <a class="dropdown-item" href="#" data-uri="/">Home</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#" data-uri="/logout">Logout</a>
   </div>
   </div>
     </nav>`;
+    } 
+  }else {
+      navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
+      <a class="navbar-brand" href="/" data-uri="/">
+            <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+      </a>
+      <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
+      <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-uri="/films/add" style="text-decoration: none;" class="text-warning">Add</a></button>
+      <button type="button" class="btn btn-white id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+          <a class="text-warning" style="text-decoration: none; font-size:30px">Search</a>
+      </button>
+      <div class="rounded-pill dropdown-menu">
+      <form id="searchform" class="form-inline d-flex justify-content-center md-form form-lg active-cyan active-cyan-2 mt-2 border-0">
+        <input id="search" class="form-control w-75" type="search" placeholder="Search"
+          aria-label="Search">
+          <button class="btn btn-outline-warning btn-rounded btn-sm my-0" type="submit">Search</button>
+          </form>
+      </div>
+    </div>
+    <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#login">Login</a>
+      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#register">Register</a>
+    </div>
+    </div>
+      </nav>`;
   }
+  navBar.innerHTML = navbar;
+  let searchForm = document.querySelector("#searchform");
+  searchForm.addEventListener("submit", onSearch);
+};
 
-  return (navBar.innerHTML = navbar);
+const onSearch = (e) => {
+  e.preventDefault();
+  let search = document.getElementById("search").value;
+  RedirectUrl("/films", search);
 };
 
 export default Navbar;

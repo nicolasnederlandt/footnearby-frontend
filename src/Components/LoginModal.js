@@ -18,7 +18,7 @@ let loginPage = `
         </button>
       </div>
       <div class="modal-body">
-      <form>
+      <form id="loginform">
         <div class="form-group">
           <label for="username">Username</label>
           <input class="form-control" id="usernamelogin" type="text" name="username" placeholder="Enter your username" required="" />
@@ -42,7 +42,7 @@ const LoginPage = () => {
   setLayout("Login");
   let modallogin = document.querySelector("#modallogin");
   modallogin.innerHTML = loginPage;
-  let loginForm = document.querySelector("form");
+  let loginForm = document.querySelector("#loginform");
   const user = getUserSessionData();
   if (user) {
     // re-render the navbar for the authenticated user
