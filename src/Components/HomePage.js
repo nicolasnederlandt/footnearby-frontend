@@ -2,7 +2,6 @@ import { setLayout } from "../utils/render.js";
 
 
 const HomePage = async () => {
-  setLayout("Home");
   initMap();
 };
 

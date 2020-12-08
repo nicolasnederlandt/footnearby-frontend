@@ -10,8 +10,7 @@ const routes = {
   "/users": UserListPage,
   "/logout": LogoutComponent,
   "/error": ErrorPage,
-  "/films": FilmListPage,
-  "/films/add": AddFilm
+  "/films": FilmListPage
 };
 
 let navBar = document.querySelector("#navBar");

@@ -27,7 +27,7 @@ input:valid :not(#search){
   border-radius: 0;
 }
 #map{
-  height:550px;
+  height: 100%;
   width: 50%;
   margin-left: auto;
   margin-right: 0px;

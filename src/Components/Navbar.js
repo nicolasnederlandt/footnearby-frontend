@@ -15,9 +15,7 @@ const Navbar = () => {
         <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
       </a>
       <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
-        <button type="button" class="btn btn-white" style="font-size:30px">
-          <a href="#" data-uri="/films/add" style="text-decoration: none;" class="text-warning">Add</a>
-        </button>
+        <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
         <button type="button" class="btn btn-white" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
             <a class="text-warning" style="text-decoration: none; font-size:30px">Search</a>
         </button>
@@ -46,8 +44,8 @@ const Navbar = () => {
       <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
     <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
-      <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-uri="/films/add" style="text-decoration: none;" class="text-warning">Add</a></button>
-      <button type="button" class="btn btn-white id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+    <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
+    <button type="button" class="btn btn-white id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
           <a class="text-warning" style="text-decoration: none; font-size:30px">Search</a>
       </button>
       <div class="rounded-pill dropdown-menu">
@@ -76,7 +74,7 @@ const Navbar = () => {
             <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
       </a>
       <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
-      <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-uri="/films/add" style="text-decoration: none;" class="text-warning">Add</a></button>
+      <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
       <button type="button" class="btn btn-white id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
           <a class="text-warning" style="text-decoration: none; font-size:30px">Search</a>
       </button>
