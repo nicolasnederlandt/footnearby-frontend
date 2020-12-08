@@ -5,7 +5,7 @@ import { getUserSessionData } from "../../utils/session.js";
 let page = document.querySelector("#page");
 
 const FilmListPage = (search) => {
-  if(!search){
+  if(search===null){
     setLayout("List of films");
     
     fetch("/api/films", {
@@ -20,19 +20,19 @@ const FilmListPage = (search) => {
       })
       .then((data) => onFilmList(data))
       .catch((err) => onError(err));
-}else{
-  setLayout(`Searching for ${search} ...`);
+  }else{
+    setLayout(`Searching for ${search} ...`);
 
-  fetch("/api/films/" + search, {
-      method: "GET",
-  })
-  .then((response) => {
-      if(!response.ok) throw new Error("Error code : " + response.status + " : " + response.statusText);
-      return response.json();
-  })
-  .then((data) => onFilmList(data))
-  .catch((err) => onError(err));
-}
+    fetch("/api/films/" + search, {
+        method: "GET",
+    })
+    .then((response) => {
+        if(!response.ok) throw new Error("Error code : " + response.status + " : " + response.statusText);
+        return response.json();
+    })
+    .then((data) => onFilmList(data))
+    .catch((err) => onError(err));
+  }
 };
 
 const onFilmList = (data) => {

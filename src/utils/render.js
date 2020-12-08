@@ -5,12 +5,11 @@
  * @param {headerTitle} headerTitle
  * @param {footerText} footerText
  */
-function setLayout(pageTitle, footerText) {
+function setLayout(pageTitle) {
   if (pageTitle) {
     document.querySelector("title").innerText = pageTitle;
     document.querySelector("#pageTitle").innerText = pageTitle;
   }
-  if (footerText) document.querySelector("#footerText").innerText = footerText;
 }
 // named export
 export { setLayout };

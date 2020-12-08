@@ -55,7 +55,7 @@ let addFilmPage = `
             required
           />
         </div>
-        <button class="btn btn-lg btn-block btn-success" id="btnregister" type="submit">Add a Playground</button>
+        <button class="btn btn-lg btn-block btn-success" id="btnadd" type="submit">Add a Playground</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
         <div class="alert alert-danger mt-2 d-none" id="messageBoardRegister"></div><span id="errorMessage"></span>
         </form>
