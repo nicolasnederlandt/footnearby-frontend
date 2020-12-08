@@ -3,7 +3,7 @@ import {Router} from "./Components/Router.js";
 import Navbar from "./Components/Navbar.js";
 import RegisterModal from "./Components/RegisterModal.js";
 import LoginModal from "./Components/LoginModal.js";
-import ThemeDropDown from "./Components/ThemeDropDown.js";
+
 /* use webpack style & css loader*/
 import "./stylesheets/style.css";
 /* load bootstrap css (web pack asset management) */
@@ -18,9 +18,6 @@ Navbar();
 
 RegisterModal()||LoginModal();
 
-ThemeDropDown();
-
 Router();
-
 
 setLayout(undefined, HEADER_TITLE, FOOTER_TEXT);

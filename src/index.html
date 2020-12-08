@@ -36,8 +36,7 @@
         flex-grow-1: Fill available space 
         mb-5 : to ensure that we see all of the content of the page row -->
       <div class="row flex-grow-1 mb-5">
-        <div class="d-none d-md-block col-md bg-dark left"></div>
-        <div class="col col-md-10 mt-2">
+        <div class="col col-md-10 mt-2"></div>
           <div id="navBar"></div>       
           
           <h4 id="pageTitle"></h4>
@@ -45,18 +44,20 @@
           <div id="page"></div>
           <div id="modallogin"></div>
           <div id="modalregister"></div>
+         
         </div>
+        <div id="map"></div>
         <div class="d-none d-md-block col-md bg-dark right"></div>
       </div>
       <!-- Footer row -->
-      <div class="row bg-dark fixed-bottom footer">
         <div class="col">
           <footer class="py-2 text-center text-white font-weight-bold">
-            <h5 id="footerText"></h5>
-            <div id="themeSelection"></div>
           </footer>
         </div>
       </div>
     </div>
+    <!--script refer to google map-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtzzbH-JPwo77N4KfpygVE0Fr5Boapn0A&callback=initMap&libraries=&v=weekly"
+    defer></script>
    </body>
 </html>
