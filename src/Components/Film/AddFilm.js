@@ -1,5 +1,4 @@
 import { RedirectUrl } from "../Router.js";
-import { setLayout } from "../../utils/render.js";
 import { getUserSessionData } from "../../utils/session.js";
 
 
@@ -67,7 +66,6 @@ let addFilmPage = `
 </div>`;
 
 const AddFilmModal = () => {
-  setLayout("Add a film");
   let addModal = document.querySelector("#modaladd");
   addModal.innerHTML = addFilmPage;
   let addForm = document.querySelector("#addform");

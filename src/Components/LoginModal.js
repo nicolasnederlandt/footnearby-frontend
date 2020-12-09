@@ -4,7 +4,6 @@ By default, all escape sequences in a template literal are ignored.*/
 import {getUserSessionData, setUserSessionData} from "../utils/session.js";
 import { RedirectUrl } from "./Router.js";
 import Navbar from "./Navbar.js";
-import { setLayout } from "../utils/render.js";
 
 
 let loginPage = `
@@ -39,7 +38,6 @@ let loginPage = `
 </div>`;
 
 const LoginPage = () => {
-  setLayout("Login");
   let modallogin = document.querySelector("#modallogin");
   modallogin.innerHTML = loginPage;
   let loginForm = document.querySelector("#loginform");
@@ -47,7 +45,7 @@ const LoginPage = () => {
   if (user) {
     // re-render the navbar for the authenticated user
     Navbar();
-    RedirectUrl("/films");
+    RedirectUrl("/");
   } else
     loginForm.addEventListener("submit", onLogin);
 };
@@ -86,7 +84,7 @@ const onUserLogin = (userData) => {
   setUserSessionData(user);
   // re-render the navbar for the authenticated user
   Navbar();
-  RedirectUrl("/films");
+  RedirectUrl("/");
 };
 
 const onError = (err) => {

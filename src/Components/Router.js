@@ -2,15 +2,12 @@ import HomePage from "./HomePage.js";
 import UserListPage from "./UserListPage.js";
 import LogoutComponent from "./LogoutComponent.js";
 import ErrorPage from "./ErrorPage.js";
-import AddFilm from "./Film/AddFilm.js";
-import FilmListPage from "./Film/FilmListPage.js";
 
 const routes = {
   "/": HomePage,
   "/users": UserListPage,
   "/logout": LogoutComponent,
-  "/error": ErrorPage,
-  "/films": FilmListPage
+  "/error": ErrorPage
 };
 
 let navBar = document.querySelector("#navBar");

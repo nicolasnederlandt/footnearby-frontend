@@ -17,42 +17,17 @@
   </head>
 
   <!-- Viewport height of 100% -->
-  <body>
-    <!-- Use of bootstrap to get a responsive design : container-fluid for a full width
-    h-100 for a full height element  
-    d-flex to create a flexbox container and transform direct children elements into flex items 
-    flex-column to set a vertical direction-->
-    <div class="container-fluid h-100 d-flex flex-column">
-      <!-- Header row : dark background, white text -->
-      <div class="row bg-dark py-2 header">
-        <div class="col">
-          <header style="margin-top: 60px;">
-          </header>
-        </div>
-      </div>
+  <body style="margin-top: 70px;"> 
+      <div id="navBar"></div>
 
-      <!-- Page content row. 
-        flex-grow-1: Fill available space 
-        mb-5 : to ensure that we see all of the content of the page row -->
-      <div class="row flex-grow-1 mb-5">
-        <div class="col col-md-10 mt-2"></div>
-          <div id="navBar"></div>       
-          
-          <h4 id="pageTitle"></h4>
-          
-          <div id="page"></div>
-          <div id="modallogin"></div>
-          <div id="modalregister"></div>
-          <div id="modaladd"></div>
-        </div>
-        <div id="map"></div>    
-      </div>
-      <!-- Footer row -->
-          <footer></footer>
-      </div>
-    </div>
+      <h4 id="pageTitle"></h4>
+
+      <div id="page" class="row"></div>
+
+      <div id="modallogin"></div>
+      <div id="modalregister"></div>
+      <div id="modaladd"></div>
     <!--script refer to google map-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtzzbH-JPwo77N4KfpygVE0Fr5Boapn0A&callback=initMap&libraries=&v=weekly"
-    defer></script>
-   </body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtzzbH-JPwo77N4KfpygVE0Fr5Boapn0A&callback=initMap&libraries=&v=weekly"></script>
+  </body>
 </html>
