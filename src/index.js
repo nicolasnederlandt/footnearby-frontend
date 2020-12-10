@@ -3,7 +3,10 @@ import {Router} from "./Components/Router.js";
 import Navbar from "./Components/Navbar.js";
 import RegisterModal from "./Components/RegisterModal.js";
 import LoginModal from "./Components/LoginModal.js";
+import AddCourtModal from "./Components/AddCourtModal.js";
+/*
 import AddFilmModal from "./Components/Film/AddFilm.js";
+*/
 
 /* use webpack style & css loader*/
 import "./stylesheets/style.css";
@@ -17,7 +20,7 @@ const FOOTER_TEXT = "Happy learning : )";
 
 Navbar();
 
-RegisterModal()||LoginModal()||AddFilmModal();
+RegisterModal()||LoginModal()||AddCourtModal();
 
 Router();
 

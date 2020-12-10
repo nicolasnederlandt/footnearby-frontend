@@ -42,7 +42,7 @@ let registerPage = `
 </div>`;
 
 const RegisterPage = () => {
-  setLayout("Register");
+  
   let modalregister = document.querySelector("#modalregister");
   modalregister.innerHTML = registerPage;
   let registerForm = document.querySelector("#registerform");

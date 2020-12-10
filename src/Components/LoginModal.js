@@ -39,7 +39,7 @@ let loginPage = `
 </div>`;
 
 const LoginPage = () => {
-  setLayout("Login");
+  
   let modallogin = document.querySelector("#modallogin");
   modallogin.innerHTML = loginPage;
   let loginForm = document.querySelector("#loginform");
@@ -47,7 +47,7 @@ const LoginPage = () => {
   if (user) {
     // re-render the navbar for the authenticated user
     Navbar();
-    RedirectUrl("/films");
+    RedirectUrl("/");
   } else
     loginForm.addEventListener("submit", onLogin);
 };
@@ -86,7 +86,7 @@ const onUserLogin = (userData) => {
   setUserSessionData(user);
   // re-render the navbar for the authenticated user
   Navbar();
-  RedirectUrl("/films");
+  RedirectUrl("/");
 };
 
 const onError = (err) => {

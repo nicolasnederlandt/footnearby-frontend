@@ -1,9 +1,8 @@
-import { RedirectUrl } from "../Router.js";
-import { setLayout } from "../../utils/render.js";
-import { getUserSessionData } from "../../utils/session.js";
+import { RedirectUrl } from "./Router.js";
+import {getUserSessionData} from "../utils/session.js";
 
 
-let addFilmPage = `
+let addCourtPage = `
 <div class="modal" id="add" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -87,27 +86,29 @@ let addFilmPage = `
   </div>
 </div>`;
 
-const AddFilmModal = () => {
+const AddCourtModal = () => {
   let addModal = document.querySelector("#modaladd");
-  addModal.innerHTML = addFilmPage;
+  addModal.innerHTML = addCourtPage;
   let addForm = document.querySelector("#addform");
-  addForm.addEventListener("submit", onAddFilm);
+  addForm.addEventListener("submit", onAddCourt);
 };
 
-const onAddFilm = (e) => {
+const onAddCourt = (e) => {
   e.preventDefault();
-  let film = {
+  let court = {
     title: document.getElementById("title").value,
-    duration: document.getElementById("duration").value,
-    budget: document.getElementById("budget").value,
-    link: document.getElementById("link").value,
+    adress: document.getElementById("adress").value,
+    city: document.getElementById("city").value,
+    surface: document.getElementById("surface").value,
+    light : document.getElementById("light").value,
+    cover : document.getElementById("cover").value,
   };
 
   const user = getUserSessionData();
 
-  fetch("/api/films/", {
+  fetch("/api/courts/", {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
-    body: JSON.stringify(film), // body data type must match "Content-Type" header
+    body: JSON.stringify(court), // body data type must match "Content-Type" header
     headers: {
       "Content-Type": "application/json",
       Authorization: user.token,
@@ -120,14 +121,14 @@ const onAddFilm = (e) => {
         );
       return response.json();
     })
-    .then((data) => onFilmAdded(data))
+    .then((data) => onCourtAdded(data))
     .catch((err) => onError(err));
 };
 
-const onFilmAdded = (data) => {
+const onCourtAdded = (data) => {
   console.log(data);
   // re-render the navbar for the authenticated user  
-  RedirectUrl("/films");
+  RedirectUrl("/courts");
 };
 
 const onError = (err) => {
@@ -135,4 +136,4 @@ const onError = (err) => {
   RedirectUrl("/error", errorMessage);
 };
 
-export default AddFilmModal;
+export default AddCourtModal;

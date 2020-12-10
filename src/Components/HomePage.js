@@ -2,6 +2,7 @@ import { setLayout } from "../utils/render.js";
 
 
 const HomePage = async () => {
+  
   initMap();
 };
 
@@ -14,7 +15,6 @@ function initMap(){
   }
   //New map
   var map = new google.maps.Map(document.getElementById('map'),option);
-
 
   //Array of markers
   var markers = [

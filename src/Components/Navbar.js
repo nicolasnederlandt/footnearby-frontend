@@ -105,7 +105,7 @@ const Navbar = () => {
 const onSearch = (e) => {
   e.preventDefault();
   let search = document.getElementById("search").value;
-  RedirectUrl("/films", search);
+  RedirectUrl("/", search);
 };
 
 export default Navbar;
