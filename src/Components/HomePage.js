@@ -55,7 +55,7 @@ const onCourtList = (data) => {
   let table = `
             <ul class="list-group list-group-flush">`;
   data.forEach((element) => {
-    table += `<li class="list-group-item">
+    table += `<li class="list-group-item" data-toggle="collapse" href="#collapse${element.id}" role="button" aria-expanded="false" aria-controls="collapse${element.id}">
                 <div class="row">
                   <div class="col">
                     <img src="${courtPicture}" class="rounded" style="width: 100%;"/>
@@ -71,6 +71,12 @@ const onCourtList = (data) => {
                         <li class="text-muted">${element.cover}</li>
                         <li class="text-muted">${element.light}</li>
                       </ul>
+                  </div>
+                </div>
+                <div class="collapse" id="collapse${element.id}">
+                  <div>
+                    <br/>
+                    <center><p>${element.adress}</p></center>
                   </div>
                 </div>
               </li>`;

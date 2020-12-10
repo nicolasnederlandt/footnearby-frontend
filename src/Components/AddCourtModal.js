@@ -44,37 +44,61 @@ let addCourtPage = `
               required
             />
         </div>
-        <div class="form-group">
-            <input
+        <div class="btn-group btn-block btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-success">
+            <input 
               class="form-control"
-              type="text"
-              name="surface"
-              id="surface"
-              placeholder="Surface (ex:Synthetic)"
-              required
-            />
-        </div>
-        <div class="form-group">
-            <input
+              type="radio" 
+              name="optionsSynthetic" 
+              id="option1Synthetic" checked> 
+              Synthetic
+          </label>
+          <label class="btn btn-success">
+            <input 
               class="form-control"
-              type="text"
-              name="light"
-              id="light"
-              placeholder="Is it lit ? (Yes/No)"
-              required
-            />
+              type="radio" 
+              name="optionsSynthetic" 
+              id="option2Synthetic"> 
+              Grass
+          </label>
         </div>
-        <div class="form-group">
-            <input
+        <div class="btn-group btn-block btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-success">
+            <input 
               class="form-control"
-              type="text"
-              name="cover"
-              id="cover"
-              placeholder="Is it cover ? (Yes/No)"
-              required
-            />
+              type="radio" 
+              name="optionsLight" 
+              id="option1Light" checked> 
+              Light
+          </label>
+          <label class="btn btn-success">
+            <input 
+              class="form-control"
+              type="radio" 
+              name="optionsLight" 
+              id="option2Light"> 
+              No light
+          </label>
         </div>
-        
+        <div class="btn-group btn-block btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-success">
+            <input 
+              class="form-control"
+              type="radio" 
+              name="optionsCover" 
+              id="option1Cover" checked> 
+              Covered
+          </label>
+          <label class="btn btn-success">
+            <input 
+              class="form-control"
+              type="radio" 
+              name="optionsCover" 
+              id="option2Cover"> 
+              Not covered
+          </label>
+        </div>
+
         <button class="btn btn-lg btn-block btn-success" id="btnadd" type="submit">Add a Playground</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
         <div class="alert alert-danger mt-2 d-none" id="messageBoardAddFail"></div><span id="errorMessage"></span>
@@ -96,13 +120,25 @@ const AddCourtModal = () => {
 
 const onAddCourt = (e) => {
   e.preventDefault();
+  let syntheticForm;
+  if(document.getElementById("option1Synthetic").checked)
+    syntheticForm = "synthetic";
+  else syntheticForm = "grass";
+  let lightForm;
+  if(document.getElementById("option1Light").checked)
+    lightForm = "light";
+  else lightForm = "no light";
+  let coverForm;
+  if(document.getElementById("option1Cover").checked)
+    coverForm = "covered";
+  else coverForm = "not covered";
   let court = {
     title: document.getElementById("title").value,
     adress: document.getElementById("adress").value,
     city: document.getElementById("city").value,
-    surface: document.getElementById("surface").value,
-    light : document.getElementById("light").value,
-    cover : document.getElementById("cover").value,
+    surface: syntheticForm,
+    light : lightForm,
+    cover : coverForm,
   };
 
   const user = getUserSessionData();
