@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav class="navbar fixed-top navbar-light bg-white shadow-sm">
       <a class="navbar-brand" href="#" data-uri="/">
         <img id="logotarget" src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
-
+        <span id="sitetitle">FootNearby</span>
       </a>
       <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
         <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
@@ -31,6 +31,7 @@ const Navbar = () => {
       </div>
       <div class="btn-group" role="group">
         <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span>${user.user.username}</span>
           <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
@@ -45,6 +46,7 @@ const Navbar = () => {
       navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
     <a class="navbar-brand" href="#" data-uri="/">
       <img id="logotarget" src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+      <span id="sitetitle">FootNearby</span>
     </a>
     <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
     <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
@@ -61,6 +63,7 @@ const Navbar = () => {
     </div>
   <div class="btn-group" role="group">
   <button id="btnGroupDrop1" type="button" class="btn dropdown-toggle shadow-sm btn-white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span>${user.user.username}</span>
     <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
   </button>
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
