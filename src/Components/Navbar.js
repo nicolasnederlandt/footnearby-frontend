@@ -117,14 +117,14 @@ const Navbar = () => {
     opacity: [0,1],
     easing: "easeOutExpo",
     duration: 1200,
-    delay: (el, i) => 1000 + 30 * i
+    delay: (el, i) => 100 + 30 * i
   }).add({
     targets: '#sitetitle .letter',
     translateX: [0,-30],
     opacity: [1,0],
     easing: "easeInExpo",
     duration: 500,
-    delay: (el, i) => 100 + 30 * i
+    delay: (el, i) => 1000 + 30 * i
   });
   logotarget.addEventListener("mouseover", function() {
     animation.play()});
