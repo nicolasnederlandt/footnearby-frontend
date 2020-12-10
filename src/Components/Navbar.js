@@ -3,6 +3,8 @@ import {getUserSessionData} from "../utils/session.js";
 import logo from "../images/logo.png";
 import logouser from "../images/user.png";
 import { RedirectUrl } from "./Router.js";
+
+
 // destructuring assignment
 const Navbar = () => {
   let navbar;
@@ -12,7 +14,8 @@ const Navbar = () => {
       navbar = `
     <nav class="navbar fixed-top navbar-light bg-white shadow-sm">
       <a class="navbar-brand" href="#" data-uri="/">
-        <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+        <img id="logotarget" src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+
       </a>
       <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
         <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
@@ -41,7 +44,7 @@ const Navbar = () => {
       } else {
       navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
     <a class="navbar-brand" href="#" data-uri="/">
-      <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+      <img id="logotarget" src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
     <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
     <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
@@ -71,7 +74,8 @@ const Navbar = () => {
   }else {
       navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
       <a class="navbar-brand" href="#" data-uri="/">
-            <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"  href="#" data-uri="/">
+            <img id="logotarget" src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"  href="#" data-uri="/">
+            <span id="sitetitle">FootNearby</span>
       </a>
       <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
       <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
@@ -102,6 +106,29 @@ const Navbar = () => {
   navBar.innerHTML = navbar;
   let searchForm = document.querySelector("#searchform");
   searchForm.addEventListener("submit", onSearch);
+  let logotarget = document.querySelector("#logotarget");
+  let sitetitle = document.querySelector("#sitetitle");
+  sitetitle.innerHTML = sitetitle.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+  let animation = anime.timeline({loop: false})
+  .add({
+    targets: '#sitetitle .letter',
+    translateX: [40,0],
+    translateZ: 0,
+    opacity: [0,1],
+    easing: "easeOutExpo",
+    duration: 1200,
+    delay: (el, i) => 1000 + 30 * i
+  }).add({
+    targets: '#sitetitle .letter',
+    translateX: [0,-30],
+    opacity: [1,0],
+    easing: "easeInExpo",
+    duration: 500,
+    delay: (el, i) => 100 + 30 * i
+  });
+  logotarget.addEventListener("mouseover", function() {
+    animation.play()});
+  
 };
 
 const onSearch = (e) => {
