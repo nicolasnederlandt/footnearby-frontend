@@ -29,6 +29,7 @@ let loginPage = `
         <button class="btn btn-lg btn-block btn-success" id="btnlogin" type="submit">Login</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
         <div class="alert alert-danger mt-2 d-none" id="messageBoardLogin"></div>
+        <div class="alert alert-success mt-2 d-none" id="messageBoardLoginSucces"></div>
       </form>
       <div class="modal-footer">
         <p>Don't have an account ? <a class="text-success" href="#" data-toggle="modal" data-dismiss="modal" data-target="#register">Register</a></p>
@@ -80,12 +81,15 @@ const onLogin = (e) => {
 };
 
 const onUserLogin = (userData) => {
+  let messageBoard = document.querySelector("#messageBoardLoginSucces");
   console.log("onUserLogin:", userData);
   const user = { ...userData, isAutenticated: true };
   setUserSessionData(user);
   // re-render the navbar for the authenticated user
   Navbar();
   RedirectUrl("/");
+  messageBoard.innerHTML = "Login succeeded !";
+  messageBoard.classList.add("d-block");  
 };
 
 const onError = (err) => {

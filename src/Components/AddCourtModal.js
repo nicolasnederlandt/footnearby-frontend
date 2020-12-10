@@ -77,7 +77,8 @@ let addCourtPage = `
         
         <button class="btn btn-lg btn-block btn-success" id="btnadd" type="submit">Add a Playground</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
-        <div class="alert alert-danger mt-2 d-none" id="messageBoardRegister"></div><span id="errorMessage"></span>
+        <div class="alert alert-danger mt-2 d-none" id="messageBoardAddFail"></div><span id="errorMessage"></span>
+        <div class="alert alert-danger mt-2 d-none" id="messageBoardAddSucces"></div><span id="errorMessage"></span>
         </form>
         <div class="modal-footer">
         <p></p>
@@ -105,6 +106,7 @@ const onAddCourt = (e) => {
   };
 
   const user = getUserSessionData();
+  if(!user) notif();
 
   fetch("/api/courts/", {
     method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -126,10 +128,20 @@ const onAddCourt = (e) => {
 };
 
 const onCourtAdded = (data) => {
+  let messageBoard = document.querySelector("#messageBoardAddSucces");
   console.log(data);
   // re-render the navbar for the authenticated user  
-  RedirectUrl("/courts");
+  RedirectUrl("/");
+  messageBoard.innerHTML = "Adding succeeded !";
+  messageBoard.classList.add("d-block");  
 };
+
+const notif = () => {
+  let messageBoard = document.querySelector("#messageBoardAddFail");
+  RedirectUrl("/");
+  messageBoard.innerHTML = `You must first <a class="text-success" href="#" data-toggle="modal" data-dismiss="modal" data-target="#login">login</a>`;
+  messageBoard.classList.add("d-block");  
+}
 
 const onError = (err) => {
   let errorMessage = err.message;

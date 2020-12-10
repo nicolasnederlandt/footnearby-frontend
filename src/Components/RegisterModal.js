@@ -32,6 +32,7 @@ let registerPage = `
         <button class="btn btn-lg btn-block btn-success" id="btnregister" type="submit">Register</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
         <div class="alert alert-danger mt-2 d-none" id="messageBoardRegister"></div><span id="errorMessage"></span>
+        <div class="alert alert-success mt-2 d-none" id="messageBoardRegisterSucces"></div><span id="errorMessage"></span>
       </form>
       <div class="modal-footer">
         <p>Already have an account ? <a class="text-success" href="#" data-toggle="modal" data-dismiss="modal" data-target="#login">Login</a></p>
@@ -41,10 +42,7 @@ let registerPage = `
 </div>`;
 
 const RegisterPage = () => {
-<<<<<<< HEAD
   
-=======
->>>>>>> ba80c73442d38d06b3676a338c270bc6136a894c
   let modalregister = document.querySelector("#modalregister");
   modalregister.innerHTML = registerPage;
   let registerForm = document.querySelector("#registerform");
@@ -75,12 +73,15 @@ const onRegister = (e) => {
 };
 
 const onUserRegistration = (userData) => {
+  let messageBoard = document.querySelector("#messageBoardRegisterSucces");
   console.log("onUserRegistration", userData);
   const user = {...userData, isAutenticated:true };
   setUserSessionData(user);
   // re-render the navbar for the authenticated user
   Navbar();
-  RedirectUrl("/films");
+  RedirectUrl("/");
+  messageBoard.innerHTML = "Registering succeeded !";
+  messageBoard.classList.add("d-block");  
 };
 
 const onError = (err) => {

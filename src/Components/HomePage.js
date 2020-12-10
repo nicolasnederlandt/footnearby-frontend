@@ -1,18 +1,21 @@
 import { setLayout } from "../utils/render";
 import { RedirectUrl } from "./Router.js";
 import { getUserSessionData } from "../utils/session.js";
+import courtPicture from "../images/terrain-foot.jpg";
 
 let page = document.querySelector("#page");
 
 const HomePage = async (search) => {
   page.innerHTML = 
-  `
-    <div id="filmlist" class="col"></div>
-    <div id="map" class="col" style="position: fixed; height: 93vh; margin-bottom= 0px;"></div>
+  `<div class="row">
+    <div id="courtlist" class="col position-absolute w-50 shadow-sm"></div>
+    <div id="map" class="col position-fixed w-50" style="margin-left: 50%; height: 93vh;"></div>
+  </div>
   `;
   if(search===undefined){
     setLayout("Home");
-    fetch("/api/films", {
+
+    fetch("/api/courts", {
       method: "GET",
     })
       .then((response) => {
@@ -22,12 +25,12 @@ const HomePage = async (search) => {
           );
         return response.json();
       })
-      .then((data) => onFilmList(data, search))
+      .then((data) => onCourtList(data))
       .then(() => initMap())
       .catch((err) => onError(err));
   }else{
     setLayout(`Searching for ${search} ...`);
-    fetch("/api/films/" + search, {
+    fetch("/api/courts/" + search, {
       method: "GET",
     })
       .then((response) => {
@@ -37,7 +40,7 @@ const HomePage = async (search) => {
           );
         return response.json();
       })
-      .then((data) => onFilmList(data))
+      .then((data) => onCourtList(data))
       .then(() => initMap())
       .catch((err) => onError(err));
   }
@@ -46,24 +49,35 @@ const HomePage = async (search) => {
  *                COURTS LIST
  *****************************************************/
 
-const onFilmList = (data) => {
-  let filmList = document.querySelector("#filmlist");
+const onCourtList = (data) => {
+  let courtList = document.querySelector("#courtlist");
   if (!data) return;
   let table = `
-  <div id="tableFilms" class="col">
-      <ul class="list-group list-group-flush">`;
+            <ul class="list-group list-group-flush">`;
   data.forEach((element) => {
-    table += `<li class="list-group-item" data-id="${element.id}">
-                <td contenteditable="true">${element.title}</td>
-                <td contenteditable="true"><a href="${element.link}" target="_blank">${element.link}</a></td>
-                <td contenteditable="true">${element.duration}</td>
-                <td contenteditable="true">${element.budget}</td>
+    table += `<li class="list-group-item">
+                <div class="row">
+                  <div class="col">
+                    <img src="${courtPicture}" class="rounded" style="width: 100%;"/>
+                  </div>
+                  <div class="col">
+                      <ul style="list-style: none;">
+                        <li class="text-muted">${element.city}</li>
+                        <li><h3>${element.title}</h3></li>
+                        <br/>
+                        <div class="dropdown-divider"></div>
+                        <br/>
+                        <li class="text-muted">${element.surface}</li>
+                        <li class="text-muted">${element.cover}</li>
+                        <li class="text-muted">${element.light}</li>
+                      </ul>
+                  </div>
+                </div>
               </li>`;
   });
 
-  table += `</tbody>
-  </table>`;
-  filmList.innerHTML = table;
+  table += `</ul>`;
+  courtList.innerHTML = table;
   
   const saveBtns = document.querySelectorAll(".save");
   const deleteBtns = document.querySelectorAll(".delete");
@@ -78,20 +92,22 @@ const onFilmList = (data) => {
 
 const onSave = (e) => {
   // the id is given in the current table row under data-id attribute
-  const filmId = e.target.parentElement.parentElement.dataset.id;
-  let film = {};
+  const courtId = e.target.parentElement.parentElement.dataset.id;
+  let court = {};
   const tr = e.target.parentElement.parentElement;
   const cells = tr.querySelectorAll("td");
-  film.title = cells[0].innerText;
-  film.link = cells[1].innerText;
-  film.duration = cells[2].innerText;
-  film.budget = cells[3].innerText;
-  console.log("Film:", film);
+  court.title = cells[0].innerText;
+  court.adress = cells[1].innerText;
+  court.city = cells[2].innerText;
+  court.surface = cells[3].innerText;
+  court.light = cells[4].innerText;
+  court.cover = cells[5].innerText;
+  console.log("Court:", court);
   const user = getUserSessionData();
 
-  fetch("/api/films/" + filmId, {
+  fetch("/api/courts/" + courtId, {
     method: "PUT", // *GET, POST, PUT, DELETE, etc.
-    body: JSON.stringify(film), // body data type must match "Content-Type" header
+    body: JSON.stringify(court), // body data type must match "Content-Type" header
     headers: {
       "Content-Type": "application/json",
       Authorization: user.token,
@@ -104,15 +120,15 @@ const onSave = (e) => {
         );
       return response.json();
     })
-    .then((data) => FilmListPage())
+    .then((data) => HomePage())
     .catch((err) => onError(err));
 };
 
 const onDelete = (e) => {
   // the id is given in the current table row under data-id attribute
-  const filmId = e.target.parentElement.parentElement.dataset.id;
+  const courtId = e.target.parentElement.parentElement.dataset.id;
   const user = getUserSessionData();
-  fetch("/api/films/" + filmId, {
+  fetch("/api/courts/" + courtId, {
     method: "DELETE",
     headers: {
       Authorization: user.token,
@@ -125,7 +141,7 @@ const onDelete = (e) => {
         );
       return response.json();
     })
-    .then((data) => FilmListPage())
+    .then((data) => HomePage())
     .catch((err) => onError(err));
 };
 
