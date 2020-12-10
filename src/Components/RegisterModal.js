@@ -1,7 +1,6 @@
 import { RedirectUrl } from "./Router.js";
 import Navbar from "./Navbar.js";
 import {setUserSessionData} from "../utils/session.js";
-import { setLayout } from "../utils/render.js";
 
 /* In a template literal, the ` (backtick), \ (backslash), and $ (dollar sign) characters should be 
 escaped using the escape character \ if they are to be included in their template value. 
@@ -42,7 +41,10 @@ let registerPage = `
 </div>`;
 
 const RegisterPage = () => {
+<<<<<<< HEAD
   
+=======
+>>>>>>> ba80c73442d38d06b3676a338c270bc6136a894c
   let modalregister = document.querySelector("#modalregister");
   modalregister.innerHTML = registerPage;
   let registerForm = document.querySelector("#registerform");

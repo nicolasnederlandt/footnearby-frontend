@@ -2,18 +2,26 @@ import HomePage from "./HomePage.js";
 import UserListPage from "./UserListPage.js";
 import LogoutComponent from "./LogoutComponent.js";
 import ErrorPage from "./ErrorPage.js";
+<<<<<<< HEAD
 import AddCourtModal from "./AddCourtModal.js";
 /*
 import AddFilm from "./Film/AddFilm.js";
 import FilmListPage from "./Film/FilmListPage.js";
 */
+=======
+
+>>>>>>> ba80c73442d38d06b3676a338c270bc6136a894c
 const routes = {
   "/": HomePage,
   "/users": UserListPage,
   "/logout": LogoutComponent,
+<<<<<<< HEAD
   "/error": ErrorPage,
   "/addCourt" : AddCourtModal,
   /*"/films": FilmListPage*/
+=======
+  "/error": ErrorPage
+>>>>>>> ba80c73442d38d06b3676a338c270bc6136a894c
 };
 
 let navBar = document.querySelector("#navBar");

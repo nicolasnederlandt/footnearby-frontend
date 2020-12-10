@@ -11,7 +11,7 @@ const Navbar = () => {
     if(user.user.admin){
       navbar = `
     <nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-      <a class="navbar-brand" href="/" data-uri="/">
+      <a class="navbar-brand" href="#" data-uri="/">
         <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
       </a>
       <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
@@ -40,7 +40,7 @@ const Navbar = () => {
     </nav>`;
       } else {
       navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-    <a class="navbar-brand" href="/" data-uri="/">
+    <a class="navbar-brand" href="#" data-uri="/">
       <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
     <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
@@ -70,8 +70,8 @@ const Navbar = () => {
     } 
   }else {
       navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-      <a class="navbar-brand" href="/" data-uri="/">
-            <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+      <a class="navbar-brand" href="#" data-uri="/">
+            <img src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"  href="#" data-uri="/">
       </a>
       <div class="rounded-pill btn-group bg-white shadow-sm align-middle" role="group">
       <button type="button" class="btn btn-white" style="font-size:30px"><a href="#" data-toggle="modal" data-target="#add" style="text-decoration: none;" class="text-warning">Add</a></button>
@@ -91,6 +91,8 @@ const Navbar = () => {
       <img src="${logouser}" width="40" height="40" class="d-inline-block align-middle" alt="" loading="lazy">
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+      <a class="dropdown-item" href="#" data-uri="/">Home</a>
+      <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="#" data-toggle="modal" data-target="#login">Login</a>
       <a class="dropdown-item" href="#" data-toggle="modal" data-target="#register">Register</a>
     </div>
