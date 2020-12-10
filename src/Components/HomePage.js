@@ -4,11 +4,6 @@ import { getUserSessionData } from "../utils/session.js";
 
 let page = document.querySelector("#page");
 
-<<<<<<< HEAD
-const HomePage = async () => {
-  
-  initMap();
-=======
 const HomePage = async (search) => {
   page.innerHTML = 
   `
@@ -111,7 +106,6 @@ const onSave = (e) => {
     })
     .then((data) => FilmListPage())
     .catch((err) => onError(err));
->>>>>>> ba80c73442d38d06b3676a338c270bc6136a894c
 };
 
 const onDelete = (e) => {
@@ -156,11 +150,7 @@ function initMap(){
       mapTypeControl: false,
   }
   //New map
-<<<<<<< HEAD
-  var map = new google.maps.Map(document.getElementById('map'),option);
-=======
   var map = new google.maps.Map(document.querySelector("#map"),option);
->>>>>>> ba80c73442d38d06b3676a338c270bc6136a894c
 
   //Array of markers
   var markers = [
