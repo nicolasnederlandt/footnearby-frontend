@@ -8,7 +8,7 @@ const HomePage = async (search) => {
   page.innerHTML = 
   `
     <div id="filmlist" class="col"></div>
-    <div id="map" class="col" style="position: fixed; height: 100vh; margin-bottom= 0px;"></div>
+    <div id="map" class="col" style="position: fixed; height: 93vh; margin-bottom= 0px;"></div>
   `;
   if(search===undefined){
     setLayout("Home");
@@ -43,7 +43,7 @@ const HomePage = async (search) => {
   }
 };
 /******************************************************
- *                PLAYGROUND LIST
+ *                COURTS LIST
  *****************************************************/
 
 const onFilmList = (data) => {
@@ -151,8 +151,6 @@ function initMap(){
   }
   //New map
   var map = new google.maps.Map(document.querySelector("#map"),option);
-
-
 
   //Array of markers
   var markers = [
