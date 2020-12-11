@@ -5,6 +5,7 @@ import courtPicture from "../images/terrain-foot.jpg";
 import grass from "../images/grass.png";
 import lightbulb from "../images/light-bulb.png";
 import roof from "../images/roof.png";
+import icon from "../images/icon.png";
 
 let page = document.querySelector("#page");
 var address = [];
@@ -179,7 +180,6 @@ const onDelete = (e) => {
 const onClick = (e) => {
   console.log("onClick");
   const adress = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
-  console.log(adress);
   geocoder.geocode({'address': adress}, function(results, status) {
     if (status === 'OK') {
       map.setCenter(results[0].geometry.location);
@@ -245,9 +245,10 @@ function initMap(){
       var map;
       function initMap() {
           map = new google.maps.Map(document.getElementById('map'), {
-            zoom : 12,
+            zoom : 15,
             center : {lat:50.8503396,lng:4.3517103},
             mapTypeControl: false,
+            icon: icon
         });
         geocoder = new google.maps.Geocoder();
         codeAddress(geocoder, map,address);
@@ -262,7 +263,8 @@ function initMap(){
               map.setCenter(results[0].geometry.location);
               var marker = new google.maps.Marker({
                 map: map,
-                position: results[0].geometry.location
+                position: results[0].geometry.location,
+                icon: icon
               });
             } else {
               console.log('Geocode was not successful for the following reason: ' + status);
