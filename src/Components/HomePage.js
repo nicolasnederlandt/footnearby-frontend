@@ -59,7 +59,7 @@ const onCourtList = (data) => {
   let table = `
             <ul class="list-group list-group-flush">`;
   data.forEach((element) => {
-    table += `<li class="list-group-item" data-toggle="collapse" href="#collapse${element.id}" role="button" aria-expanded="false" aria-controls="collapse${element.id}">
+    table += `<li id="${element.adress}" class="list-group-item" data-toggle="collapse" href="#collapse${element.id}" role="button" aria-expanded="false" aria-controls="collapse${element.id}">
                 <div class="row">
                   <div class="col">
                     <img src="${courtPicture}" class="rounded" style="width: 100%;"/>
@@ -74,6 +74,8 @@ const onCourtList = (data) => {
                         <li class="text-muted">${element.surface}</li>
                         <li class="text-muted">${element.cover}</li>
                         <li class="text-muted">${element.light}</li>
+                        <br/>
+                        <li><button id="viewmap" class="btn btn-success rounded">View on map</button></li>
                       </ul>
                   </div>
                 </div>
@@ -100,7 +102,11 @@ const onCourtList = (data) => {
 
   table += `</ul>`;
   courtList.innerHTML = table;
-  
+
+  const contents = document.querySelectorAll(".list-group-item");
+  contents.forEach((content) => {
+    content.addEventListener("click", onClick);
+  })
   const saveBtns = document.querySelectorAll(".save");
   const deleteBtns = document.querySelectorAll(".delete");
   deleteBtns.forEach((deleteBtn) => {
@@ -165,6 +171,19 @@ const onDelete = (e) => {
     })
     .then((data) => HomePage())
     .catch((err) => onError(err));
+};
+
+const onClick = (e) => {
+  console.log("onClick");
+  const adress = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+  console.log(adress);
+  geocoder.geocode({'address': adress}, function(results, status) {
+    if (status === 'OK') {
+      map.setCenter(results[0].geometry.location);
+    } else {
+      console.log('Geocode was not successful for the following reason: ' + status);
+    }
+  })
 };
 
 const onError = (err) => {
