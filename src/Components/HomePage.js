@@ -282,6 +282,7 @@ function initMap(){
               google.maps.event.addListener(marker, 'click', function() {
                   infoWindow.open(map, marker);
                   map.setCenter(results[0].geometry.location);
+                  map.setZoom(15);
               });
             } else {
               console.log('Geocode was not successful for the following reason: ' + status);
