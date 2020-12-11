@@ -248,7 +248,8 @@ function initMap(){
             zoom : 15,
             center : {lat:50.8503396,lng:4.3517103},
             mapTypeControl: false,
-            icon: icon
+            title: adress,
+            icon: icon,
         });
         geocoder = new google.maps.Geocoder();
         codeAddress(geocoder, map,address);
@@ -262,9 +263,21 @@ function initMap(){
             if (status === 'OK') {
               map.setCenter(results[0].geometry.location);
               var marker = new google.maps.Marker({
+                zoom: 15,
                 map: map,
                 position: results[0].geometry.location,
                 icon: icon
+              });
+
+              var infoWindowOptions = {
+                content: `<h3>${address[i]}</h3>`
+                    + '<p>Courts</p>'
+              };
+      
+              var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+              
+              google.maps.event.addListener(marker, 'click', function() {
+                  infoWindow.open(map, marker);
               });
             } else {
               console.log('Geocode was not successful for the following reason: ' + status);
