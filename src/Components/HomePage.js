@@ -244,51 +244,51 @@ function initMap(){
 */
 //-------------------------------------------------------------------------------------------------
 
-      var geocoder;
-      var map;
-      function initMap() {
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom : 15,
-            center : {lat:50.8503396,lng:4.3517103},
-            mapTypeControl: false,
-            title: adress,
-            icon: icon,
+var geocoder;
+var map;
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom : 15,
+      center : {lat:50.8503396,lng:4.3517103},
+      mapTypeControl: false,
+      title: adress,
+      icon: icon,
+  });
+  geocoder = new google.maps.Geocoder();
+  codeAddress(geocoder, map,address);
+}
+
+
+function codeAddress(geocoder, map, address) {
+  for(let i=0; i<address.length; i++){
+
+    geocoder.geocode({'address': address[i]}, function(results, status) {
+      if (status === 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          zoom: 15,
+          map: map,
+          position: results[0].geometry.location,
+          icon: icon
         });
-        geocoder = new google.maps.Geocoder();
-        codeAddress(geocoder, map,address);
+
+        var infoWindowOptions = {
+          content: `<h3>${address[i]}</h3>`
+              + '<p>Courts</p>'
+        };
+
+        var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
+        
+        google.maps.event.addListener(marker, 'click', function() {
+            infoWindow.open(map, marker);
+            map.setCenter(results[0].geometry.location);
+            map.setZoom(15);
+        });
+      } else {
+        console.log('Geocode was not successful for the following reason: ' + status);
       }
-      
-
-      function codeAddress(geocoder, map, address) {
-        for(let i=0; i<address.length; i++){
-
-          geocoder.geocode({'address': address[i]}, function(results, status) {
-            if (status === 'OK') {
-              map.setCenter(results[0].geometry.location);
-              var marker = new google.maps.Marker({
-                zoom: 15,
-                map: map,
-                position: results[0].geometry.location,
-                icon: icon
-              });
-
-              var infoWindowOptions = {
-                content: `<h3>${address[i]}</h3>`
-                    + '<p>Courts</p>'
-              };
-      
-              var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-              
-              google.maps.event.addListener(marker, 'click', function() {
-                  infoWindow.open(map, marker);
-                  map.setCenter(results[0].geometry.location);
-                  map.setZoom(15);
-              });
-            } else {
-              console.log('Geocode was not successful for the following reason: ' + status);
-            }
-          });
-        }
-      }
+    });
+  }
+}
 
 export default HomePage;

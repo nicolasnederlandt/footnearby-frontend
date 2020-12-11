@@ -103,8 +103,8 @@ let addCourtPage = `
             <input type="file" 
               id="image"
               style="display: none;">
-              <br/>
-            <p class="text-success">Upload Photo link</p>
+              <!--<br/>
+            <p id="uploadlink" class="text-success">Upload Photo link</p>-->
           </label>
        </div></center>
         <button class="btn btn-lg btn-block btn-success" id="btnadd" type="submit">Add a Playground</button>
