@@ -77,7 +77,12 @@ const onCourtList = (data) => {
                 <div class="collapse" id="collapse${element.id}">
                   <div>
                     <br/>
-                    <center><p>${element.adress}</p></center>
+                    <h5>${element.adress}</h5>
+                    <div class="row">
+                      <p class="col"></p>
+                      <p class="col"></p>
+                      <p class="col"></p>
+                    </div>
                   </div>
                 </div>
               </li>`;

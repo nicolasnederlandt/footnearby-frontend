@@ -102,7 +102,7 @@ let addCourtPage = `
         <button class="btn btn-lg btn-block btn-success" id="btnadd" type="submit">Add a Playground</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
         <div class="alert alert-danger mt-2 d-none" id="messageBoardAddFail"></div><span id="errorMessage"></span>
-        <div class="alert alert-danger mt-2 d-none" id="messageBoardAddSucces"></div><span id="errorMessage"></span>
+        <div class="alert alert-success mt-2 d-none" id="messageBoardAddSucces"></div><span id="errorMessage"></span>
         </form>
         <div class="modal-footer">
         <p></p>
