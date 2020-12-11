@@ -13,6 +13,7 @@ var address = [];
 const HomePage = async (search) => {
   page.innerHTML = 
   `<div class="row">
+    <h3 id="pageTitle"></h3>
     <div id="courtlist" class="col position-absolute w-50 shadow-sm"></div>
     <div id="map" class="col position-fixed w-50" style="margin-left: 50%; height: 93vh;"></div>
   </div>
@@ -35,6 +36,8 @@ const HomePage = async (search) => {
       .catch((err) => onError(err));
   }else{
     setLayout(`Searching for ${search} ...`);
+    let pageTitle = document.querySelector("#pageTitle");
+    pageTitle.innerHTML = `Searching for "${search}" ...`;
     fetch("/api/courts/" + search, {
       method: "GET",
     })
@@ -278,6 +281,7 @@ function initMap(){
               
               google.maps.event.addListener(marker, 'click', function() {
                   infoWindow.open(map, marker);
+                  map.setCenter(results[0].geometry.location);
               });
             } else {
               console.log('Geocode was not successful for the following reason: ' + status);
