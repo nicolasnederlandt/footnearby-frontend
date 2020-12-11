@@ -13,7 +13,7 @@ const Navbar = () => {
     if(user.user.admin){
       navbar = `
     <nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-      <a class="navbar-brand" href="#" data-uri="/">
+      <a class="navbar-brand" href="/" data-uri="/">
         <img id="logotarget" src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
         <span id="sitetitle">FootNearby</span>
       </a>
@@ -44,7 +44,7 @@ const Navbar = () => {
     </nav>`;
       } else {
       navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-    <a class="navbar-brand" href="#" data-uri="/">
+    <a class="navbar-brand" href="/" data-uri="/">
       <img id="logotarget" src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
       <span id="sitetitle">FootNearby</span>
     </a>
@@ -76,7 +76,7 @@ const Navbar = () => {
     } 
   }else {
       navbar = `<nav class="navbar fixed-top navbar-light bg-white shadow-sm">
-      <a class="navbar-brand" href="#" data-uri="/">
+      <a class="navbar-brand" href="/" data-uri="/">
             <img id="logotarget" src="${logo}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"  href="#" data-uri="/">
             <span id="sitetitle">FootNearby</span>
       </a>
@@ -115,7 +115,7 @@ const Navbar = () => {
   let animation = anime.timeline({loop: false})
   .add({
     targets: '#sitetitle .letter',
-    translateX: [40,0],
+    translateX: [-40,0],
     translateZ: 0,
     opacity: [0,1],
     easing: "easeOutExpo",

@@ -98,7 +98,15 @@ let addCourtPage = `
               Not covered
           </label>
         </div>
-
+        <center><div class="form-group">
+          <label>
+            <input type="file" 
+              id="image"
+              style="display: none;">
+              <br/>
+            <p class="text-success">Upload Photo link</p>
+          </label>
+       </div></center>
         <button class="btn btn-lg btn-block btn-success" id="btnadd" type="submit">Add a Playground</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
         <div class="alert alert-danger mt-2 d-none" id="messageBoardAddFail"></div><span id="errorMessage"></span>
@@ -132,14 +140,28 @@ const onAddCourt = (e) => {
   if(document.getElementById("option1Cover").checked)
     coverForm = "covered";
   else coverForm = "not covered";
-  let court = {
+  let image = document.getElementById("image").files[0];
+  let court;
+  if(image!==undefined){
+  court = {
     title: document.getElementById("title").value,
     adress: document.getElementById("adress").value,
     city: document.getElementById("city").value,
     surface: syntheticForm,
     light : lightForm,
     cover : coverForm,
-  };
+    image: document.getElementById("image").files[0].name,
+  }}
+  else{
+  court = {
+    title: document.getElementById("title").value,
+    adress: document.getElementById("adress").value,
+    city: document.getElementById("city").value,
+    surface: syntheticForm,
+    light : lightForm,
+    cover : coverForm,
+    image: null,
+  }};
 
   const user = getUserSessionData();
   if(!user) notif();

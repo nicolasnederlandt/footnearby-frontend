@@ -2,6 +2,9 @@ import { setLayout } from "../utils/render";
 import { RedirectUrl } from "./Router.js";
 import { getUserSessionData } from "../utils/session.js";
 import courtPicture from "../images/terrain-foot.jpg";
+import grass from "../images/grass.png";
+import lightbulb from "../images/light-bulb.png";
+import roof from "../images/roof.png";
 
 let page = document.querySelector("#page");
 
@@ -76,11 +79,17 @@ const onCourtList = (data) => {
                 <div class="collapse" id="collapse${element.id}">
                   <div>
                     <br/>
-                    <h5>${element.adress}</h5>
+                    <h5 class="col">${element.adress}</h5>
                     <div class="row">
-                      <p class="col"></p>
-                      <p class="col"></p>
-                      <p class="col"></p>
+                      <span class="col"></span>
+                      <span class="row col">`;
+                    if(element.surface==='grass')
+                      table += `<span class="col"><img src="${grass}" width="50" height="50"/></span>`
+                    if(element.cover==="covered")
+                      table += `<span class="col"><img src="${roof}" width="50" height="50"/></span>`
+                    if(element.light==="light")  
+                      table += `<span class="col"><img src="${lightbulb}" width="50" height="50"/></span>`
+          table += `  </span>
                     </div>
                   </div>
                 </div>

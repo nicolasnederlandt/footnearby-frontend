@@ -28,6 +28,9 @@ let registerPage = `
         <div class="form-group">
           <label for="password">Password</label>
           <input class="form-control" id="passwordregister" type="password" name="password" placeholder="Enter your password" required="" pattern=".*[A-Z]+.*" />
+          <small id="passwordHelpInline" class="text-muted">
+            Must contain at least one upper case.
+          </small>
         </div>
         <button class="btn btn-lg btn-block btn-success" id="btnregister" type="submit">Register</button>
         <!-- Create an alert component with bootstrap that is not displayed by default-->
