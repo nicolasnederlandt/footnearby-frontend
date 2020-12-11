@@ -4,6 +4,7 @@ import { getUserSessionData } from "../utils/session.js";
 import courtPicture from "../images/terrain-foot.jpg";
 
 let page = document.querySelector("#page");
+var address = [];
 
 const HomePage = async (search) => {
   page.innerHTML = 
@@ -80,6 +81,7 @@ const onCourtList = (data) => {
                   </div>
                 </div>
               </li>`;
+  address.push(element.adress);
   });
 
   table += `</ul>`;
@@ -164,6 +166,7 @@ const onError = (err) => {
  *                    MAP
 *********************************************/
 
+/*
 function initMap(){
   //Map option
   var option = {
@@ -173,7 +176,7 @@ function initMap(){
   }
   //New map
   var map = new google.maps.Map(document.querySelector("#map"),option);
-
+  
   //Array of markers
   var markers = [
     {
@@ -185,12 +188,10 @@ function initMap(){
     content:'CINQUENTENAIRE'
     }
   ];
-
  //Loop trought markers
  for(var i=0; i<markers.length; i++){
    addMarker(markers[i]);
  }
-
   //function add marker
   function addMarker(props){
       var marker = new google.maps.Marker({
@@ -199,6 +200,39 @@ function initMap(){
           content : props.content
       });
   }
+  
 }
+*/
+//-------------------------------------------------------------------------------------------------
+
+      var geocoder;
+      var map;
+      function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom : 12,
+            center : {lat:50.8503396,lng:4.3517103},
+            mapTypeControl: false,
+        });
+        geocoder = new google.maps.Geocoder();
+        codeAddress(geocoder, map,address);
+      }
+      
+
+      function codeAddress(geocoder, map, address) {
+        for(let i=0; i<address.length; i++){
+
+          geocoder.geocode({'address': address[i]}, function(results, status) {
+            if (status === 'OK') {
+              map.setCenter(results[0].geometry.location);
+              var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+              });
+            } else {
+              alert('Geocode was not successful for the following reason: ' + status);
+            }
+          });
+        }
+      }
 
 export default HomePage;
