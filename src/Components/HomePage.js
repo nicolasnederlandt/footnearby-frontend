@@ -74,16 +74,19 @@ const onCourtList = (data) => {
                         <li class="text-muted">${element.surface}</li>
                         <li class="text-muted">${element.cover}</li>
                         <li class="text-muted">${element.light}</li>
-                        <br/>
-                        <li><button id="viewmap" class="btn btn-success rounded">View on map</button></li>
                       </ul>
                   </div>
                 </div>
                 <div class="collapse" id="collapse${element.id}">
-                  <div>
+                  <div class="row">
                     <br/>
-                    <h5 class="col">${element.adress}</h5>
-                    <div class="row">
+                    <div class="col">
+                      <br/>
+                      <h5 class="col">${element.adress}</h5>
+                      <br/>
+                      <center><button id="viewmap" class="btn btn-success rounded">View on map</button></center>
+                    </div>
+                    <div class="col">
                       <span class="col"></span>
                       <span class="row col">`;
                     if(element.surface==='grass')
@@ -103,9 +106,9 @@ const onCourtList = (data) => {
   table += `</ul>`;
   courtList.innerHTML = table;
 
-  const contents = document.querySelectorAll(".list-group-item");
-  contents.forEach((content) => {
-    content.addEventListener("click", onClick);
+  const viewBtns = document.querySelectorAll("#viewmap");
+  viewBtns.forEach((viewbtn) => {
+    viewbtn.addEventListener("click", onClick);
   })
   const saveBtns = document.querySelectorAll(".save");
   const deleteBtns = document.querySelectorAll(".delete");
